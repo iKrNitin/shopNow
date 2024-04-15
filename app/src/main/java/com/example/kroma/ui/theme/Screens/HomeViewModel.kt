@@ -38,4 +38,20 @@ class HomeViewModel @Inject constructor(private val itemsRepo: ItemsRepo):ViewMo
                 Log.d("API","Success state")
             }
     }
+
+    fun getCategories() = viewModelScope.launch {
+        itemsRepo.getCategories()
+            .onStart {
+                _apiStateFlow.value = ApiState.Loading
+                Log.d("API","Loading state")
+            }.catch {
+                    e -> _apiStateFlow.value = ApiState.Failure(e)
+                Log.d("API","Failure state")
+            }.collect{
+                    response ->
+                _apiStateFlow.value = ApiState.Success(response)
+                Log.d("API","Success state")
+            }
+    }
+
 }

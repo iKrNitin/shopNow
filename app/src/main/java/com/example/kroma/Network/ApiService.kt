@@ -2,6 +2,7 @@ package com.example.kroma.Network
 
 import android.util.JsonReader
 import android.util.Log
+import com.example.kroma.Data.ChipData
 import com.example.kroma.Data.Item
 import com.example.kroma.Data.ProductResponse
 import com.google.gson.GsonBuilder
@@ -55,6 +56,16 @@ class ApiService @Inject constructor() {
         }
         val body:ProductResponse = response.body()
         return body.products
+    }
+
+    suspend fun getCategories():List<String>{
+        val response: HttpResponse = client.get("https://dummyjson.com/products/categories")
+        if (response.status.value in 200..299) {
+            println("Successful response!")
+            Log.d("API","Data fetched successfully")
+        }
+        val body:List<String> = response.body()
+        return body
     }
 }
 

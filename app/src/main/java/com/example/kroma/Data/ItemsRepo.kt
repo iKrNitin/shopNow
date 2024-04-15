@@ -13,4 +13,8 @@ constructor(private val apiService: ApiService){
     fun getProducts():kotlinx.coroutines.flow.Flow<List<Item>> = flow {
         emit(apiService.getProducts())
     }.flowOn(Dispatchers.IO)
+
+    fun getCategories():kotlinx.coroutines.flow.Flow<List<String>> = flow {
+        emit(apiService.getCategories())
+    }.flowOn(Dispatchers.IO)
 }

@@ -1,5 +1,6 @@
 package com.example.kroma.Data
 
+import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.serialization.Serializable
 
 data class ProductResponse(
@@ -21,4 +22,9 @@ data class Item(
     val stock: Int,
     val thumbnail: String,
     val title: String
+)
+
+data class ChipData(
+    val categories: List<String>,
+    val selected: Boolean,
 )
