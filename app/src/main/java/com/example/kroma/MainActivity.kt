@@ -11,6 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.kroma.Navigation.AppNavGraph
 import com.example.kroma.ui.theme.KromaTheme
 import com.example.kroma.ui.theme.Screens.HomeScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +29,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(navigateToItemDetail = {})
+                    val navController:NavHostController = rememberNavController()
+                    AppNavGraph(navController = navController )
                 }
             }
         }
